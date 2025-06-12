@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPv4 Complete Guide</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>IPv4 Complete Guide</h1>
+            <p>Understanding Internet Protocol Version 4 - From Basics to Advanced Concepts</p>
+        </div>
+
+        <div class="content">
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h2>📋 Table of Contents</h2>
+                <ul>
+                    <li><a href="#introduction">1. Introduction to IP Protocol</a></li>
+                    <li><a href="#what-is-ipv4">2. What is IPv4?</a></li>
+                    <li><a href="#ipv4-structure">3. IPv4 Address Structure</a></li>
+                    <li><a href="#types-of-addresses">4. Types of IPv4 Addresses</a></li>
+                    <li><a href="#ip-assignment">5. IP Address Assignment</a></li>
+                    <li><a href="#subnet-masks">6. Subnet Masks</a></li>
+                    <li><a href="#cidr-notation">7. CIDR Notation</a></li>
+                    <li><a href="#network-addressing">8. Network Addressing</a></li>
+                    <li><a href="#nat">9. Network Address Translation</a></li>
+                    <li><a href="#pat">10. Port Address Translation</a></li>
+                    <li><a href="#examples">11. Practical Examples</a></li>
+                    <li><a href="#summary">12. Summary</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 1: Introduction -->
+            <div class="section" id="introduction">
+                <h2>1. Introduction to IP Protocol</h2>
+                
+                <div class="highlight-box">
+                    <strong>Internet Protocol (IP)</strong> is the fundamental communication standard that enables devices to identify and communicate with each other over networks worldwide.
+                </div>
+
+                <p>Just like every house needs a unique address for mail delivery, every device on a network requires a unique IP address for data transmission. This addressing system ensures that information sent over the internet reaches its intended destination.</p>
+
+                <h3>Key Functions of IP</h3>
+                <ul>
+                    <li><strong>Device Identification:</strong> Assigns unique addresses to network devices</li>
+                    <li><strong>Data Routing:</strong> Determines the optimal path data takes across networks</li>
+                    <li><strong>Communication Standards:</strong> Provides universal rules for network communication</li>
+                    <li><strong>Network Segmentation:</strong> Enables logical division of large networks</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>🏠 Real-World Analogy</h4>
+                    <p>Think of IP addresses like postal addresses. When you send a letter, you need:</p>
+                    <ul>
+                        <li>The recipient's address (destination IP)</li>
+                        <li>Your return address (source IP)</li>
+                        <li>A postal system to deliver it (internet infrastructure)</li>
+                    </ul>
+                    <p>Similarly, when your computer requests a website, it needs the server's IP address to establish communication.</p>
+                </div>
+            </div>
+
+            <!-- Section 2: What is IPv4 -->
+            <div class="section" id="what-is-ipv4">
+                <h2>2. What is IPv4?</h2>
+                
+                <p><strong>IPv4 (Internet Protocol version 4)</strong> is the most widely deployed version of the Internet Protocol. Despite the gradual introduction of IPv6, IPv4 continues to be the backbone of internet communications.</p>
+
+                <div class="info-box">
+                    <strong>Historical Context:</strong> IPv4 was developed in the 1970s and standardized in 1981. It has been the foundation of internet growth for over four decades.
+                </div>
+
+                <h3>IPv4 Characteristics</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Impact</th>
+                    </tr>
+                    <tr>
+                        <td>32-bit addressing</td>
+                        <td>Uses 32 binary digits for addresses</td>
+                        <td>~4.3 billion unique addresses</td>
+                    </tr>
+                    <tr>
+                        <td>Dot-decimal notation</td>
+                        <td>Four numbers separated by dots</td>
+                        <td>Human-readable format</td>
+                    </tr>
+                    <tr>
+                        <td>Universal compatibility</td>
+                        <td>Supported by all network devices</td>
+                        <td>Seamless communication</td>
+                    </tr>
+                    <tr>
+                        <td>Mature technology</td>
+                        <td>Decades of optimization</td>
+                        <td>Stable and reliable</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>IPv4 Address Exhaustion:</strong> With only ~4.3 billion addresses available and billions of devices needing connectivity, IPv4 addresses have become a scarce resource, leading to the development of IPv6 and technologies like NAT.
+                </div>
+            </div>
+
+            <!-- Section 3: IPv4 Structure -->
+            <div class="section" id="ipv4-structure">
+                <h2>3. IPv4 Address Structure</h2>
+                
+                <p>An IPv4 address consists of <strong>32 bits</strong> organized into <strong>4 octets</strong> (8-bit groups), displayed in human-readable dot-decimal notation.</p>
+
+                <div class="diagram">
+                    <h3>IPv4 Address Visualization</h3>
+                    <div class="ip-visual">
+                        <div class="ip-octet">192</div>
+                        <div class="ip-dot">.</div>
+                        <div class="ip-octet">168</div>
+                        <div class="ip-dot">.</div>
+                        <div class="ip-octet">1</div>
+                        <div class="ip-dot">.</div>
+                        <div class="ip-octet">1</div>
+                    </div>
+                    <p>Each octet ranges from <strong>0 to 255</strong></p>
+                </div>
+
+                <h3>Structure Details</h3>
+                <ul>
+                    <li><strong>Total bits:</strong> 32 bits (4 bytes)</li>
+                    <li><strong>Octets:</strong> 4 groups of 8 bits each</li>
+                    <li><strong>Range per octet:</strong> 0-255 (2⁸ = 256 possible values)</li>
+                    <li><strong>Total addresses:</strong> 2³² = 4,294,967,296</li>
+                </ul>
+
+                <h3>Binary to Decimal Conversion</h3>
+                <table>
+                    <tr>
+                        <th>Decimal</th>
+                        <th>Binary</th>
+                        <th>Calculation</th>
+                    </tr>
+                    <tr>
+                        <td>192</td>
+                        <td>11000000</td>
+                        <td>128 + 64 = 192</td>
+                    </tr>
+                    <tr>
+                        <td>168</td>
+                        <td>10101000</td>
+                        <td>128 + 32 + 8 = 168</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>00000001</td>
+                        <td>1 = 1</td>
+                    </tr>
+                    <tr>
+                        <td>255</td>
+                        <td>11111111</td>
+                        <td>128+64+32+16+8+4+2+1 = 255</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>📊 Common IPv4 Examples</h4>
+                    <ul>
+                        <li><code class="inline-code">192.168.1.1</code> - Common home router address</li>
+                        <li><code class="inline-code">8.8.8.8</code> - Google's public DNS server</li>
+                        <li><code class="inline-code">127.0.0.1</code> - Localhost (your own computer)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 4: Types of Addresses -->
+            <div class="section" id="types-of-addresses">
+                <h2>4. Types of IPv4 Addresses</h2>
+                
+                <p>IPv4 addresses are categorized into different types based on their scope, usage, and routing behavior.</p>
+
+                <h3>4.1 Public IP Addresses</h3>
+                <div class="highlight-box">
+                    <strong>Public IPs</strong> are globally unique addresses used for communication over the internet.
+                </div>
+
+                <p><strong>Characteristics:</strong></p>
+                <ul>
+                    <li>Globally unique across the entire internet</li>
+                    <li>Assigned and managed by Internet Service Providers (ISPs)</li>
+                    <li>Routable on the public internet</li>
+                    <li>Required for direct internet communication</li>
+                    <li>Limited availability due to IPv4 address exhaustion</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>🌐 Public IP Examples</h4>
+                    <table>
+                        <tr>
+                            <th>IP Address</th>
+                            <th>Owner/Service</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td><code>8.8.8.8</code></td>
+                            <td>Google</td>
+                            <td>Public DNS Server</td>
+                        </tr>
+                        <tr>
+                            <td><code>1.1.1.1</code></td>
+                            <td>Cloudflare</td>
+                            <td>Public DNS Server</td>
+                        </tr>
+                        <tr>
+                            <td><code>208.67.222.222</code></td>
+                            <td>OpenDNS</td>
+                            <td>Public DNS Server</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>4.2 Private IP Addresses</h3>
+                <div class="info-box">
+                    <strong>Private IPs</strong> are reserved for use within local networks and are not routable on the public internet.
+                </div>
+
+                <p><strong>Standard Private IP Ranges (RFC 1918):</strong></p>
+                <table>
+                    <tr>
+                        <th>Range</th>
+                        <th>CIDR</th>
+                        <th>Addresses</th>
+                        <th>Common Usage</th>
+                    </tr>
+                    <tr>
+                        <td>10.0.0.0 - 10.255.255.255</td>
+                        <td>/8</td>
+                        <td>16,777,216</td>
+                        <td>Large enterprise networks</td>
+                    </tr>
+                    <tr>
+                        <td>172.16.0.0 - 172.31.255.255</td>
+                        <td>/12</td>
+                        <td>1,048,576</td>
+                        <td>Medium-sized networks</td>
+                    </tr>
+                    <tr>
+                        <td>192.168.0.0 - 192.168.255.255</td>
+                        <td>/16</td>
+                        <td>65,536</td>
+                        <td>Home and small office</td>
+                    </tr>
+                </table>
+
+                <p><strong>Benefits of Private IPs:</strong></p>
+                <ul>
+                    <li>Enhanced security (not directly accessible from internet)</li>
+                    <li>Network flexibility and control</li>
+                    <li>Cost-effective (no need for multiple public IPs)</li>
+                </ul>
+
+                <h3>4.3 Special-Purpose IP Addresses</h3>
+                <p>Certain IP addresses are reserved for specific functions:</p>
+
+                <table>
+                    <tr>
+                        <th>IP Address/Range</th>
+                        <th>Purpose</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><code>127.0.0.1</code></td>
+                        <td>Loopback</td>
+                        <td>References the local device ("localhost")</td>
+                    </tr>
+                    <tr>
+                        <td><code>0.0.0.0</code></td>
+                        <td>Default route</td>
+                        <td>Represents no specific address</td>
+                    </tr>
+                    <tr>
+                        <td><code>255.255.255.255</code></td>
+                        <td>Limited broadcast</td>
+                        <td>Broadcasts to all devices on local network</td>
+                    </tr>
+                    
+                    
+                </table>
+            </div>
+
+            <!-- Section 5: IP Assignment -->
+            <div class="section" id="ip-assignment">
+                <h2>5. IP Address Assignment</h2>
+                
+                <p>Devices can obtain IP addresses through two primary methods: dynamic assignment via DHCP or manual static configuration.</p>
+
+                <h3>5.1 Dynamic Assignment (DHCP)</h3>
+                <div class="highlight-box">
+                    <strong>DHCP (Dynamic Host Configuration Protocol)</strong> automatically assigns IP addresses and network configuration to devices.
+                </div>
+
+                <h4>DHCP Process (DORA)</h4>
+                <div class="diagram">
+                    <h4>DHCP Four-Step Process</h4>
+                    <p><strong>D</strong>iscover → <strong>O</strong>ffer → <strong>R</strong>equest → <strong>A</strong>cknowledge</p>
+                </div>
+
+                <ol>
+                    <li><strong>Discover:</strong> Device broadcasts request for IP address</li>
+                    <li><strong>Offer:</strong> DHCP server responds with available IP address</li>
+                    <li><strong>Request:</strong> Device formally requests the offered IP</li>
+                    <li><strong>Acknowledge:</strong> Server confirms and assigns the IP address</li>
+                </ol>
+
+                <p><strong>DHCP Configuration Includes:</strong></p>
+                <ul>
+                    <li>IP address assignment</li>
+                    <li>Subnet mask</li>
+                    <li>Default gateway</li>
+                    <li>DNS server addresses</li>
+                    <li>Lease duration</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Advantages of DHCP:</strong>
+                    <ul>
+                        <li>Automatic configuration reduces errors</li>
+                        <li>Efficient IP address utilization</li>
+                        <li>Centralized network management</li>
+                        <li>Easy device mobility</li>
+                        <li>Reduced administrative overhead</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 Static Assignment (Manual)</h3>
+                <p>Static IP addresses are manually configured and remain constant until changed.</p>
+
+                <p><strong>When to Use Static IPs:</strong></p>
+                <ul>
+                    <li>Servers requiring consistent accessibility</li>
+                    <li>Network infrastructure devices (routers, switches)</li>
+                    <li>Printers and shared resources</li>
+                    <li>Security cameras and IoT devices</li>
+                    <li>Services requiring DNS mapping</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>⚙️ Static Configuration Requirements</h4>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Example</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td>IP Address</td>
+                            <td>192.168.1.100</td>
+                            <td>Device identification</td>
+                        </tr>
+                        <tr>
+                            <td>Subnet Mask</td>
+                            <td>255.255.255.0</td>
+                            <td>Network boundary definition</td>
+                        </tr>
+                        <tr>
+                            <td>Default Gateway</td>
+                            <td>192.168.1.1</td>
+                            <td>Route to other networks</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+
+                <h3>5.3 Device IP Assignment Without Internet</h3>
+                <div class="warning-box">
+                    <strong>Important:</strong> Devices can have IP addresses without internet connectivity, as long as they're connected to a local network.
+                </div>
+
+                <p><strong>Scenarios:</strong></p>
+                <ul>
+                    <li><strong>Local Network Only:</strong> Router assigns IPs but has no internet connection</li>
+                    <li><strong>Isolated Networks:</strong> Corporate networks with no external access</li>
+                    <li><strong>APIPA (Automatic Private IP Addressing):</strong> Self-assigned 169.254.x.x addresses when DHCP fails</li>
+                </ul>
+            </div>
+
+            <!-- Section 6: Subnet Masks -->
+            <div class="section" id="subnet-masks">
+                <h2>6. Subnet Masks and Network Division</h2>
+                
+                <p><strong>Subnet masks</strong> define how IP addresses are divided into network and host portions, enabling efficient network organization and routing.</p>
+
+                <h3>6.1 Understanding Network vs. Host Portions</h3>
+                <div class="diagram">
+                    <h4>IP Address Components</h4>
+                    <div class="ip-visual">
+                        <div class="ip-octet" style="background: #e74c3c;">Network</div>
+                        <div class="ip-octet" style="background: #e74c3c;">Network</div>
+                        <div class="ip-octet" style="background: #e74c3c;">Network</div>
+                        <div class="ip-octet" style="background: #27ae60;">Host</div>
+                    </div>
+                    <p>Red = Network Portion | Green = Host Portion</p>
+                </div>
+
+                <p>Every IP address contains two logical components:</p>
+                <ul>
+                    <li><strong>Network Portion:</strong> Identifies the specific network</li>
+                    <li><strong>Host Portion:</strong> Identifies the specific device within that network</li>
+                </ul>
+
+                <h3>6.2 Subnet Mask Format and Function</h3>
+                <p>Subnet masks use the same dot-decimal notation as IP addresses, with consecutive 1s followed by consecutive 0s in binary.</p>
+
+                <table>
+                    <tr>
+                        <th>Subnet Mask</th>
+                        <th>Binary Representation</th>
+                        <th>Network Bits</th>
+                        <th>Host Bits</th>
+                    </tr>
+                    <tr>
+                        <td>255.255.255.0</td>
+                        <td>11111111.11111111.11111111.00000000</td>
+                        <td>24</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>255.255.0.0</td>
+                        <td>11111111.11111111.00000000.00000000</td>
+                        <td>16</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>255.0.0.0</td>
+                        <td>11111111.00000000.00000000.00000000</td>
+                        <td>8</td>
+                        <td>24</td>
+                    </tr>
+                </table>
+
+                <h3>6.3 Subnet Mask Application</h3>
+                <div class="example-box">
+                    <h4>🔍 Practical Example</h4>
+                    <p><strong>IP Address:</strong> <code>192.168.1.10</code></p>
+                    <p><strong>Subnet Mask:</strong> <code>255.255.255.0</code></p>
+                    
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Value</th>
+                            <th>Explanation</th>
+                        </tr>
+                        <tr>
+                            <td>Network Portion</td>
+                            <td>192.168.1</td>
+                            <td>First 24 bits (3 octets)</td>
+                        </tr>
+                        <tr>
+                            <td>Host Portion</td>
+                            <td>10</td>
+                            <td>Last 8 bits (1 octet)</td>
+                        </tr>
+                        <tr>
+                            <td>Available Hosts</td>
+                            <td>254</td>
+                            <td>2⁸ - 2 = 256 - 2 = 254</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="info-box">
+                    <strong>Why subtract 2 hosts?</strong>
+                    <ul>
+                        <li>First address (192.168.1.0) = Network address</li>
+                        <li>Last address (192.168.1.255) = Broadcast address</li>
+                        <li>Both cannot be assigned to devices</li>
+                    </ul>
+                </div>
+
+                <h3>6.4 Binary Analysis of Subnetting</h3>
+                <pre class="code">
+IP Address:    192.168.1.10  = 11000000.10101000.00000001.00001010
+Subnet Mask:   255.255.255.0 = 11111111.11111111.11111111.00000000
+                               \_________Network_________/\__Host__/
+Network ID:    192.168.1.0   = 11000000.10101000.00000001.00000000
+Broadcast:     192.168.1.255 = 11000000.10101000.00000001.11111111
+                </pre>
+            </div>
+
+            <!-- Section 7: CIDR Notation -->
+            <div class="section" id="cidr-notation">
+                <h2>7. CIDR Notation</h2>
+                
+                <div class="highlight-box">
+                    <strong>CIDR (Classless Inter-Domain Routing)</strong> provides a more flexible and efficient way to represent IP networks using slash notation.
+                </div>
+
+                <h3>7.1 Understanding CIDR Format</h3>
+                <p>Instead of writing lengthy subnet masks, CIDR uses a slash followed by the number of network bits:</p>
+
+                <div class="diagram">
+                    <h4>CIDR Notation Examples</h4>
+                    <div class="ip-visual">
+                        <div class="ip-octet">192.168.1.0</div>
+                        <div class="ip-octet" style="background: #e74c3c;">/24</div>
+                    </div>
+                    <p>The "/24" means the first 24 bits are for the network</p>
+                </div>
+
+                <h3>7.2 Common CIDR Notations</h3>
+                <table>
+                    <tr>
+                        <th>CIDR</th>
+                        <th>Subnet Mask</th>
+                        <th>Network Bits</th>
+                        <th>Host Bits</th>
+                        <th>Total Hosts</th>
+                        <th>Usable Hosts</th>
+                    </tr>
+                    <tr>
+                        <td>/8</td>
+                        <td>255.0.0.0</td>
+                        <td>8</td>
+                        <td>24</td>
+                        <td>16,777,216</td>
+                        <td>16,777,214</td>
+                    </tr>
+                    <tr>
+                        <td>/16</td>
+                        <td>255.255.0.0</td>
+                        <td>16</td>
+                        <td>16</td>
+                        <td>65,536</td>
+                        <td>65,534</td>
+                    </tr>
+                    <tr>
+                        <td>/24</td>
+                        <td>255.255.255.0</td>
+                        <td>24</td>
+                        <td>8</td>
+                        <td>256</td>
+                        <td>254</td>
+                    </tr>
+                    
+                </table>
+
+
+               
+
+                <h3>7.4 Calculating CIDR Ranges</h3>
+                <div class="info-box">
+                    <strong>Quick Formula:</strong> Usable hosts = 2^(32-CIDR) - 2
+                    <ul>
+                        <li>/24 network: 2^(32-24) - 2 = 2^8 - 2 = 254 hosts</li>
+                        <li>/16 network: 2^(32-16) - 2 = 2^16 - 2 = 65,534 hosts</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 8: Network Addressing -->
+            <div class="section" id="network-addressing">
+                <h2>8. Network Addressing Concepts</h2>
+                
+                <p>Understanding the different types of addresses within a network is crucial for proper network design and troubleshooting.</p>
+
+                <h3>8.1 Network Address Components</h3>
+                <p>Every subnet contains three distinct types of addresses with specific purposes:</p>
+
+                <div class="diagram">
+                    <h4>Network Address Range: 192.168.1.0/24</h4>
+                    <div style="display: flex; justify-content: space-around; margin: 1rem 0; flex-wrap: wrap; gap: 1rem;">
+                        <div style="background: #e74c3c; color: white; padding: 1rem; border-radius: 8px; text-align: center;">
+                            <strong>192.168.1.0</strong><br>Network Address<br>(Not assignable)
+                        </div>
+                        <div style="background: #27ae60; color: white; padding: 1rem; border-radius: 8px; text-align: center;">
+                            <strong>192.168.1.1-254</strong><br>Usable Addresses<br>(Assignable to devices)
+                        </div>
+                        <div style="background: #8e44ad; color: white; padding: 1rem; border-radius: 8px; text-align: center;">
+                            <strong>192.168.1.255</strong><br>Broadcast Address<br>(Not assignable)
+                        </div>
+                    </div>
+                </div>
+
+                <h3>8.2 Network Address</h3>
+                <ul>
+                    <li><strong>Definition:</strong> The first address in a subnet range</li>
+                    <li><strong>Purpose:</strong> Identifies the entire network or subnet</li>
+                    <li><strong>Characteristics:</strong> All host bits are set to 0</li>
+                    <li><strong>Usage:</strong> Used in routing tables to represent the network</li>
+                    <li><strong>Assignment:</strong> Cannot be assigned to individual devices</li>
+                </ul>
+
+                <h3>8.3 Broadcast Address</h3>
+                <ul>
+                    <li><strong>Definition:</strong> The last address in a subnet range</li>
+                    <li><strong>Purpose:</strong> Used to send data to all devices in the network</li>
+                    <li><strong>Characteristics:</strong> All host bits are set to 1</li>
+                    <li><strong>Usage:</strong> Broadcasting messages</li>
+                    <li><strong>Assignment:</strong> Cannot be assigned to individual devices</li>
+                </ul>
+
+                <h3>8.4 Usable Host Addresses</h3>
+                <ul>
+                    <li><strong>Definition:</strong> All addresses between network and broadcast addresses</li>
+                    <li><strong>Purpose:</strong> Can be assigned to network devices</li>
+                    <li><strong>Assignment:</strong> Computers, servers, printers, phones, etc.</li>
+                    <li><strong>Flexibility:</strong> Can be assigned statically or dynamically</li>
+                </ul>
+
+                <h3>8.5 Practical Network Examples</h3>
+                <div class="example-box">
+                    <h4>📋 Network Analysis Examples</h4>
+                    
+                    <h5>Example 1: Home Network (192.168.1.0/24)</h5>
+                    <table>
+                        <tr>
+                            <th>Address Type</th>
+                            <th>Address</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td>Network</td>
+                            <td>192.168.1.0</td>
+                            <td>Network identifier</td>
+                        </tr>
+                        <tr>
+                            <td>Router</td>
+                            <td>192.168.1.1</td>
+                            <td>Default gateway</td>
+                        </tr>
+                        <tr>
+                            <td>Computer</td>
+                            <td>192.168.1.100</td>
+                            <td>User device</td>
+                        </tr>
+                        <tr>
+                            <td>Printer</td>
+                            <td>192.168.1.200</td>
+                            <td>Network printer</td>
+                        </tr>
+                        <tr>
+                            <td>Broadcast</td>
+                            <td>192.168.1.255</td>
+                            <td>Broadcast to all devices</td>
+                        </tr>
+                    </table>
+
+                    <h5>Example 2:  (10.0.0.0/16)</h5>
+                    <table>
+                        <tr>
+                            <th>Address Type</th>
+                            <th>Value</th>
+                            <th>Details</th>
+                        </tr>
+                        <tr>
+                            <td>Network Address</td>
+                            <td>10.0.0.0</td>
+                            <td>Identifies the network</td>
+                        </tr>
+                        <tr>
+                            <td>First Usable</td>
+                            <td>10.0.0.1</td>
+                            <td>Available for devices</td>
+                        </tr>
+                        <tr>
+                            <td>Last Usable</td>
+                            <td>10.0.255.254</td>
+                            <td>Available for devices</td>
+                        </tr>
+                        <tr>
+                            <td>Broadcast Address</td>
+                            <td>10.0.255.255</td>
+                            <td>Broadcast to all 65,534 hosts</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>8.6 Subnetting for Network Segmentation</h3>
+                <p>Large networks are often divided into smaller subnets for better management:</p>
+
+                <div class="example-box">
+                    <h4>🏢 Corporate Network Subnetting Example</h4>
+                    <p><strong>Original Network:</strong> 192.168.0.0/16 (65,534 hosts)</p>
+                    <p><strong>Subnetting Strategy:</strong> Divide into /24 subnets (254 hosts each)</p>
+                    
+                    <table>
+                        <tr>
+                            <th>Department</th>
+                            <th>Subnet</th>
+                            <th>Range</th>
+                            <th>Hosts</th>
+                        </tr>
+                        <tr>
+                            <td>Management</td>
+                            <td>192.168.1.0/24</td>
+                            <td>192.168.1.1 - 192.168.1.254</td>
+                            <td>254</td>
+                        </tr>
+                        <tr>
+                            <td>Sales</td>
+                            <td>192.168.2.0/24</td>
+                            <td>192.168.2.1 - 192.168.2.254</td>
+                            <td>254</td>
+                        </tr>
+                        <tr>
+                            <td>IT Department</td>
+                            <td>192.168.3.0/24</td>
+                            <td>192.168.3.1 - 192.168.3.254</td>
+                            <td>254</td>
+                        </tr>
+                        <tr>
+                            <td>Servers</td>
+                            <td>192.168.10.0/24</td>
+                            <td>192.168.10.1 - 192.168.10.254</td>
+                            <td>254</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 9: NAT -->
+            <div class="section" id="nat">
+                <h2>9. Network Address Translation (NAT)</h2>
+                
+                <div class="highlight-box">
+                    <strong>NAT</strong> is a critical technology that allows multiple devices with private IP addresses to share a single public IP address for internet access.
+                </div>
+
+                <h3>9.1 The IPv4 Scarcity Problem</h3>
+                <div class="warning-box">
+                    <strong>The Challenge:</strong>
+                    <ul>
+                        <li>IPv4 provides only ~4.3 billion unique addresses</li>
+                        <li>Billions of devices need internet connectivity</li>
+                        <li>Not enough public IPs for every device globally</li>
+                        <li>Address exhaustion occurred in 2011</li>
+                    </ul>
+                </div>
+
+                <h3>9.2 How NAT Solves Address Scarcity</h3>
+                <p>NAT enables address sharing by:</p>
+                <ul>
+                    <li>Using private IP addresses internally</li>
+                    <li>Translating to public IP addresses for internet communication</li>
+                    <li>Maintaining translation tables for return traffic</li>
+                    <li>Allowing hundreds of devices to share one public IP</li>
+                </ul>
+
+                <h3>9.3 NAT Operation Process</h3>
+                <div class="diagram">
+                    <h4>NAT Translation Process</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; flex-wrap: wrap; gap: 1rem;">
+                        <div style="background: #3498db; color: white; padding: 1rem; border-radius: 8px; text-align: center; flex: 1; min-width: 200px;">
+                            <strong>Internal Device</strong><br>
+                            192.168.1.100<br>
+                            (Private IP)
+                        </div>
+                        <div style="font-size: 2rem; color: #2c3e50;">→</div>
+                        <div style="background: #e74c3c; color: white; padding: 1rem; border-radius: 8px; text-align: center; flex: 1; min-width: 200px;">
+                            <strong>NAT Router</strong><br>
+                            Translates<br>
+                            Private ↔ Public
+                        </div>
+                        <div style="font-size: 2rem; color: #2c3e50;">→</div>
+                        <div style="background: #27ae60; color: white; padding: 1rem; border-radius: 8px; text-align: center; flex: 1; min-width: 200px;">
+                            <strong>Internet</strong><br>
+                            203.0.113.5<br>
+                            (Public IP)
+                        </div>
+                    </div>
+                </div>
+
+                <h3>9.4 Step-by-Step NAT Example</h3>
+                <div class="example-box">
+                    <h4>🌐 Complete NAT Scenario</h4>
+                    
+                    <p><strong>Network Setup:</strong></p>
+                    <ul>
+                        <li>Home network: 192.168.1.0/24</li>
+                        <li>Router internal IP: 192.168.1.1</li>
+                        <li>Router public IP: 203.0.113.5 (from ISP)</li>
+                        <li>Computer IP: 192.168.1.100</li>
+                        <li>Phone IP: 192.168.1.101</li>
+                    </ul>
+
+                    <p><strong>Process when computer visits Google:</strong></p>
+                    <ol>
+                        <li><strong>Outbound Request:</strong>
+                            <ul>
+                                <li>Computer (192.168.1.100) requests google.com</li>
+                                <li>Packet source: 192.168.1.100</li>
+                                <li>Packet destination: 172.217.10.14 (Google's IP)</li>
+                            </ul>
+                        </li>
+                        <li><strong>NAT Translation:</strong>
+                            <ul>
+                                <li>Router receives packet from internal network</li>
+                                <li>Changes source IP from 192.168.1.100 to 203.0.113.5</li>
+                                <li>Records translation in NAT table</li>
+                                <li>Forwards packet to internet</li>
+                            </ul>
+                        </li>
+                        <li><strong>Return Traffic:</strong>
+                            <ul>
+                                <li>Google responds to 203.0.113.5</li>
+                                <li>Router checks NAT table</li>
+                                <li>Translates destination back to 192.168.1.100</li>
+                                <li>Delivers response to computer</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3>9.5 NAT Translation Table</h3>
+                <p>The router maintains a table to track active connections:</p>
+
+                <table>
+                    <tr>
+                        <th>Internal IP</th>
+                        <th>Internal Port</th>
+                        <th>External IP</th>
+                        <th>External Port</th>
+                        <th>Destination</th>
+                    </tr>
+                    <tr>
+                        <td>192.168.1.100</td>
+                        <td>54321</td>
+                        <td>203.0.113.5</td>
+                        <td>54321</td>
+                        <td>172.217.10.14:80</td>
+                    </tr>
+                    <tr>
+                        <td>192.168.1.101</td>
+                        <td>49152</td>
+                        <td>203.0.113.5</td>
+                        <td>49152</td>
+                        <td>31.13.64.35:443</td>
+                    </tr>
+                    <tr>
+                        <td>192.168.1.102</td>
+                        <td>51234</td>
+                        <td>203.0.113.5</td>
+                        <td>51234</td>
+                        <td>208.67.222.222:53</td>
+                    </tr>
+                </table>
+
+                <h3>9.6 Types of NAT</h3>
+                <table>
+                    <tr>
+                        <th>NAT Type</th>
+                        <th>Description</th>
+                        <th>Use Case</th>
+                    </tr>
+                    <tr>
+                        <td>Static NAT</td>
+                        <td>One-to-one mapping between private and public IPs</td>
+                        <td>Servers requiring consistent external access</td>
+                    </tr>
+                    <tr>
+                        <td>Dynamic NAT</td>
+                        <td>Many-to-many mapping from a pool of public IPs</td>
+                        <td>Organizations with multiple public IPs</td>
+                    </tr>
+                    <tr>
+                        <td>PAT (NAT Overload)</td>
+                        <td>Many-to-one mapping using port numbers</td>
+                        <td>Home networks, small offices (most common)</td>
+                    </tr>
+                </table>
+
+                <div class="info-box">
+                    <strong>NAT Benefits:</strong>
+                    <ul>
+                        <li>Conserves public IPv4 addresses</li>
+                        <li>Provides basic security (hides internal structure)</li>
+                        <li>Allows flexible internal addressing</li>
+                        <li>Enables internet sharing for multiple devices</li>
+                        <li>Reduces costs (fewer public IPs needed)</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>NAT Limitations:</strong>
+                    <ul>
+                        <li>Complicates peer-to-peer applications</li>
+                        <li>Breaks end-to-end connectivity principle</li>
+                        <li>Can cause issues with certain protocols</li>
+                        <li>Requires port forwarding for incoming connections</li>
+                        <li>Adds processing overhead to routers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 10: PAT -->
+            <div class="section" id="pat">
+                <h2>10. Port Address Translation (PAT)</h2>
+                
+                <div class="highlight-box">
+                    <strong>PAT (Port Address Translation)</strong>, also known as NAT Overload, is the most common form of NAT used in home and small office networks.
+                </div>
+
+                <h3>10.1 Understanding Ports in Networking</h3>
+                <p>Before diving into PAT, it's essential to understand network ports:</p>
+
+                <ul>
+                    <li><strong>Port:</strong> A numerical identifier (0-65535) for specific services or applications</li>
+                    <li><strong>Socket:</strong> Combination of IP address and port number (e.g., 192.168.1.100:80)</li>
+                    <li><strong>Well-known ports:</strong> 0-1023 (reserved for system services)</li>
+                    <li><strong>Dynamic ports:</strong> 49152-65535 (used by client applications)</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>🔌 Common Port Examples</h4>
+                    <table>
+                        <tr>
+                            <th>Port</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                        </tr>
+                        <tr>
+                            <td>80</td>
+                            <td>HTTP</td>
+                            <td>Web browsing</td>
+                        </tr>
+                        <tr>
+                            <td>443</td>
+                            <td>HTTPS</td>
+                            <td>Secure web browsing</td>
+                        </tr>
+                        <tr>
+                            <td>53</td>
+                            <td>DNS</td>
+                            <td>Domain name resolution</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>SMTP</td>
+                            <td>Email sending</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>SSH</td>
+                            <td>Secure remote access</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>10.2 How PAT Works</h3>
+                <p>PAT extends basic NAT by tracking port numbers, enabling multiple devices to share a single public IP address simultaneously.</p>
+
+                <div class="diagram">
+                    <h4>PAT Translation Process</h4>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 2px solid #dee2e6;">
+                        <p><strong>Multiple devices making different requests:</strong></p>
+                        <div style="display: flex; justify-content: space-around; margin: 1rem 0; flex-wrap: wrap; gap: 0.5rem;">
+                            <div style="background: #17a2b8; color: white; padding: 0.8rem; border-radius: 6px; text-align: center; font-size: 0.9rem;">
+                                Phone<br>192.168.1.101:54001
+                            </div>
+                            <div style="background: #28a745; color: white; padding: 0.8rem; border-radius: 6px; text-align: center; font-size: 0.9rem;">
+                                Laptop<br>192.168.1.102:54002
+                            </div>
+                            <div style="background: #ffc107; color: black; padding: 0.8rem; border-radius: 6px; text-align: center; font-size: 0.9rem;">
+                                Desktop<br>192.168.1.103:54003
+                            </div>
+                        </div>
+                        <div style="text-align: center; font-size: 1.5rem; margin: 1rem 0;">↓ PAT Router ↓</div>
+                        <div style="text-align: center;">
+                            <div style="background: #dc3545; color: white; padding: 1rem; border-radius: 6px; display: inline-block;">
+                                <strong>Single Public IP</strong><br>
+                                203.0.113.5:40001<br>
+                                203.0.113.5:40002<br>
+                                203.0.113.5:40003
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
